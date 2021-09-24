@@ -47,11 +47,15 @@ def build_games_simplified_table(members_games, limit_games = 5):
                 raw_pgn = game['pgn']
                 eco, result, moves = process_pgn(raw_pgn)
                 white_rating = game['white']['rating']
+                white_user = game['white']['username']
                 # white_result = game['white']['result']
                 black_rating = game['black']['rating']
+                black_user = game['black']['username']
                 # black_result = game['black']['result']
             else:
                 continue
+
+            id = game['url'].rsplit('/', 1)[-1]
             
             if 'time_class' in game.keys():
                 time_class = game['time_class']
@@ -76,11 +80,14 @@ def build_games_simplified_table(members_games, limit_games = 5):
             #     black_accuracy = None
 
             this_game = {
+                "id": id,
                 "time_class" : time_class,
                 "time_control" : time_control,
                 "rules" : rules,
                 "white_rating" : white_rating,
                 "black_rating" : black_rating,
+                "white_user": white_user,
+                "black_user": black_user,
                 # "white_result" : white_result,
                 # "black_result" : black_result,
                 "result": result,
